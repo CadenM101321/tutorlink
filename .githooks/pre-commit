@@ -1,0 +1,30 @@
+#!/bin/sh
+# Blocks any commit whose staged changes contain something that looks like a secret.
+# Enabled with: git config core.hooksPath .githooks
+
+GITLEAKS="$(command -v gitleaks)"
+if [ -z "$GITLEAKS" ]; then
+  for candidate in \
+    "$LOCALAPPDATA/Microsoft/WinGet/Links/gitleaks.exe" \
+    "$LOCALAPPDATA"/Microsoft/WinGet/Packages/Gitleaks.Gitleaks_*/gitleaks.exe; do
+    if [ -x "$candidate" ]; then
+      GITLEAKS="$candidate"
+      break
+    fi
+  done
+fi
+
+if [ -z "$GITLEAKS" ]; then
+  echo "pre-commit: gitleaks is not installed, so this commit can't be checked for secrets."
+  echo "Install it with: winget install Gitleaks.Gitleaks"
+  exit 1
+fi
+
+"$GITLEAKS" git --pre-commit --staged --redact --no-banner --verbose
+status=$?
+if [ $status -ne 0 ]; then
+  echo ""
+  echo "pre-commit: commit blocked because the staged changes appear to contain a secret."
+  echo "Move the value to .env.local and read it from an environment variable instead."
+  exit $status
+fi
