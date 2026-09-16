@@ -209,10 +209,11 @@ Update this checklist as work finishes, so any new session can pick up where the
 - [x] Vercel CLI (global) and Supabase CLI (project dev dependency, run with `npx supabase`) installed
 - [x] Vercel CLI and Supabase CLI signed in; Vercel app installed on GitHub
 - [x] Supabase dev project `tutorlink-dev` (ref `lzsouqetqavrocsahndh`, us-east-1) created and linked; env vars in `.env.local` and Vercel (Production, Preview, Development)
-- [ ] Vercel project linked to the repo; landing page live
-- [ ] Test Supabase query succeeds from the deployed site
+- [x] Vercel project linked to the repo; landing page live at https://tutorlink-beta.vercel.app (auto-deploys on push to `main`)
+- [x] Test Supabase query succeeds from the deployed site: `/api/health` returns `{"app":"ok","database":"ok"}`
 - [ ] Design canvas mockups: landing, search results, tutor profile, booking, session room, dashboards
-- [ ] `docs/how-it-works.md` explains Slice 0
+- [x] `docs/how-it-works.md` explains Slice 0
+- [ ] Stripe CLI and LiveKit CLI: deferred to Slices 5 and 6, when they're first needed
 
 ### Later slices
 

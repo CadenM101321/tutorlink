@@ -71,3 +71,50 @@ Four layers of protection:
 - **Git** tracks every change to the code. A **commit** is a saved snapshot with a message describing what changed.
 - **GitHub** stores a copy of the repository online. **Pushing** uploads new commits to it.
 - Once Vercel is connected, every push to the `main` branch automatically **deploys** (publishes) a new version of the live site.
+
+### Deploying: from a push to a live site
+
+The live site is **https://tutorlink-beta.vercel.app**. (`tutorlink.vercel.app` already belonged to someone else, so Vercel added `-beta`. A custom domain comes at launch.)
+
+What happens on every `git push`:
+
+1. GitHub receives the new commits.
+2. The **Vercel GitHub app** (installed on the GitHub account) notices the push and tells Vercel.
+3. Vercel downloads the code, runs `npm install` and `npm run build` on its own computers, and checks that the build succeeds.
+4. If it does, the new version goes live at the address above. If the build fails, the old version stays live, so a broken build never takes the site down.
+
+Vercel also keeps every past deployment, so rolling back to an earlier version is one click in its dashboard.
+
+**Environments.** Vercel has three: **Production** (the real site, built from `main`), **Preview** (a private test copy built from any other branch), and **Development** (for running locally). Each has its own settings. The two Supabase settings are added to all three.
+
+**Why settings live in two places.** `.env.local` is only on this computer, and Vercel's build machines can't see it. So each setting goes in `.env.local` for local work and in Vercel's settings for the live site.
+
+### The database and migrations
+
+The Supabase project is `tutorlink-dev`, in the US East region, the same region where Vercel runs the site, so requests between them are fast. Its data lives in **Postgres**, a widely used database where data is stored in tables of rows and columns, like a spreadsheet with strict rules.
+
+**Migrations.** A **migration** is a SQL file that changes the database's structure, for example by creating a table. SQL is the language used to talk to databases. The files live in `supabase/migrations/`, named with a timestamp so they always run in order.
+
+The database is never changed by clicking around in the Supabase dashboard. Every change is a migration file, committed to Git, then applied with `npx supabase db push`. This way:
+
+- The repo is a complete record of how the database got its current shape.
+- A fresh database, such as the production one at launch, can be built by running the same files.
+- Every change is reviewed and versioned like code.
+
+Supabase records which migrations it has already applied, so each one runs only once.
+
+### The health check: proving everything is connected
+
+The first migration creates a tiny database **function** called `health_check` that just returns `ok`. The page at `/api/health` calls it. This is Slice 0's final test, because a successful answer proves every link in the chain works:
+
+```
+Browser → Vercel runs src/app/api/health/route.ts
+        → Supabase client (src/lib/supabase/server.ts) uses the URL and publishable key from Vercel's settings
+        → Supabase runs health_check() in Postgres
+        ← "ok"
+Browser ← {"app":"ok","database":"ok"}
+```
+
+If the database can't be reached, the page answers `"database":"unreachable"` with status 503, the standard code for "service unavailable", so monitoring tools can tell something is wrong. The response is marked `no-store` so it's never cached, meaning every check is real.
+
+**Security detail.** The migration removes permission to run the function from everyone, then grants it only to Supabase's two app roles: `anon` (logged-out visitors) and `authenticated` (logged-in users). Starting from "nobody can" and adding exactly what's needed is called **least privilege**, and every table from Slice 1 onward follows the same pattern.
