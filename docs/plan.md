@@ -202,11 +202,12 @@ Update this checklist as work finishes, so any new session can pick up where the
 - [x] Secret protection: `.gitignore`, `.env.example`, project `CLAUDE.md` rules
 - [x] Supabase packages and Zod installed
 - [x] Supabase client helpers in `src/lib/supabase/` and session refresh in `src/proxy.ts`
-- [ ] Gitleaks pre-commit hook
-- [ ] shadcn/ui and theme colors (white, near-black, one green accent)
-- [ ] "Demo mode, no real charges" banner and placeholder landing page
-- [ ] GitHub CLI installed and signed in; public `tutorlink` repo created and pushed
-- [ ] Vercel CLI and Supabase CLI installed and signed in
+- [x] Gitleaks pre-commit hook in `.githooks/`, enabled with `git config core.hooksPath .githooks` (run that once after cloning)
+- [x] shadcn/ui and theme colors (white, near-black, green-700 accent as a placeholder until the mockups)
+- [x] "Demo mode, no real charges" banner and placeholder landing page
+- [x] GitHub CLI installed and signed in (account CadenM101321); public `tutorlink` repo created and pushed
+- [x] Vercel CLI (global) and Supabase CLI (project dev dependency, run with `npx supabase`) installed
+- [ ] Vercel CLI and Supabase CLI signed in
 - [ ] Supabase dev project created; env vars in `.env.local` and Vercel
 - [ ] Vercel project linked to the repo; landing page live
 - [ ] Test Supabase query succeeds from the deployed site
