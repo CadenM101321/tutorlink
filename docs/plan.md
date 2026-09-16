@@ -207,8 +207,8 @@ Update this checklist as work finishes, so any new session can pick up where the
 - [x] "Demo mode, no real charges" banner and placeholder landing page
 - [x] GitHub CLI installed and signed in (account CadenM101321); public `tutorlink` repo created and pushed
 - [x] Vercel CLI (global) and Supabase CLI (project dev dependency, run with `npx supabase`) installed
-- [ ] Vercel CLI and Supabase CLI signed in
-- [ ] Supabase dev project created; env vars in `.env.local` and Vercel
+- [x] Vercel CLI and Supabase CLI signed in; Vercel app installed on GitHub
+- [x] Supabase dev project `tutorlink-dev` (ref `lzsouqetqavrocsahndh`, us-east-1) created and linked; env vars in `.env.local` and Vercel (Production, Preview, Development)
 - [ ] Vercel project linked to the repo; landing page live
 - [ ] Test Supabase query succeeds from the deployed site
 - [ ] Design canvas mockups: landing, search results, tutor profile, booking, session room, dashboards
