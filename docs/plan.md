@@ -211,7 +211,7 @@ Update this checklist as work finishes, so any new session can pick up where the
 - [x] Supabase dev project `tutorlink-dev` (ref `lzsouqetqavrocsahndh`, us-east-1) created and linked; env vars in `.env.local` and Vercel (Production, Preview, Development)
 - [x] Vercel project linked to the repo; landing page live at https://tutorlink-beta.vercel.app (auto-deploys on push to `main`)
 - [x] Test Supabase query succeeds from the deployed site: `/api/health` returns `{"app":"ok","database":"ok"}`
-- [ ] Design canvas mockups: landing, search results, tutor profile, booking, session room, dashboards
+- [ ] Design mockups: first draft of 9 screens (landing, assessment, learning profile, search, tutor profile, booking, session room, student and tutor dashboards) at https://claude.ai/artifact/B9rMm65Sp8Sbe6SMnZfttG (a static page; the editable Design canvas isn't available on this account). Waiting on Caden to pick the accent green and request changes; the source file isn't in the repo, so edit the published page via its URL
 - [x] `docs/how-it-works.md` explains Slice 0
 - [ ] Stripe CLI and LiveKit CLI: deferred to Slices 5 and 6, when they're first needed
 
