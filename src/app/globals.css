@@ -49,8 +49,8 @@
 }
 
 :root {
-  /* Mostly white, near-black text, one green accent (Tailwind green-700, 5:1 contrast with white).
-     Placeholder until the exact green is picked in the design mockups. No teal. */
+  /* Mostly white, near-black text, one green accent: "Classic" #15803d, chosen 2026-09-16
+     (5:1 contrast with white text). No teal. */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

@@ -196,14 +196,14 @@ On-demand sessions, students under 18 and parent accounts, messaging before book
 
 Update this checklist as work finishes, so any new session can pick up where the last one stopped.
 
-### Slice 0: Foundation and design
+### Slice 0: Foundation and design (done 2026-09-16)
 
 - [x] Folder, Git, Next.js scaffold (TypeScript, Tailwind, ESLint, `src`)
 - [x] Secret protection: `.gitignore`, `.env.example`, project `CLAUDE.md` rules
 - [x] Supabase packages and Zod installed
 - [x] Supabase client helpers in `src/lib/supabase/` and session refresh in `src/proxy.ts`
 - [x] Gitleaks pre-commit hook in `.githooks/`, enabled with `git config core.hooksPath .githooks` (run that once after cloning)
-- [x] shadcn/ui and theme colors (white, near-black, green-700 accent as a placeholder until the mockups)
+- [x] shadcn/ui and theme colors (white, near-black, accent green "Classic" #15803d, chosen by Caden)
 - [x] "Demo mode, no real charges" banner and placeholder landing page
 - [x] GitHub CLI installed and signed in (account CadenM101321); public `tutorlink` repo created and pushed
 - [x] Vercel CLI (global) and Supabase CLI (project dev dependency, run with `npx supabase`) installed
@@ -211,7 +211,7 @@ Update this checklist as work finishes, so any new session can pick up where the
 - [x] Supabase dev project `tutorlink-dev` (ref `lzsouqetqavrocsahndh`, us-east-1) created and linked; env vars in `.env.local` and Vercel (Production, Preview, Development)
 - [x] Vercel project linked to the repo; landing page live at https://tutorlink-beta.vercel.app (auto-deploys on push to `main`)
 - [x] Test Supabase query succeeds from the deployed site: `/api/health` returns `{"app":"ok","database":"ok"}`
-- [ ] Design mockups: first draft of 9 screens (landing, assessment, learning profile, search, tutor profile, booking, session room, student and tutor dashboards) at https://claude.ai/artifact/B9rMm65Sp8Sbe6SMnZfttG (a static page; the editable Design canvas isn't available on this account). Waiting on Caden to pick the accent green and request changes; the source file isn't in the repo, so edit the published page via its URL
+- [x] Design mockups: 9 screens (landing, assessment, learning profile, search, tutor profile, booking, session room, student and tutor dashboards) approved at https://claude.ai/artifact/B9rMm65Sp8Sbe6SMnZfttG. A static page; the editable Design canvas isn't available on this account. Its source isn't in the repo, so update it through that URL
 - [x] `docs/how-it-works.md` explains Slice 0
 - [ ] Stripe CLI and LiveKit CLI: deferred to Slices 5 and 6, when they're first needed
 
