@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { DemoBanner } from "@/components/demo-banner";
+import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TutorLink",
+  title: { default: "TutorLink", template: "%s · TutorLink" },
   description: "Find a tutor who fits the way you learn.",
 };
 
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <DemoBanner />
+        <SiteHeader />
         {children}
       </body>
     </html>

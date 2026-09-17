@@ -218,6 +218,12 @@ Update this checklist as work finishes, so any new session can pick up where the
 ### Later slices
 
 - [ ] Slice 1: Accounts and login
+  - [x] `profiles` table with row-level security, column privileges, and a sign-up trigger that enforces 18+, terms, and student/tutor role
+  - [x] Auth settings in `supabase/config.toml` pushed (site URL, redirect URLs, 10-character minimum password; email confirmation stays on)
+  - [x] Sign-up, check-email, log in, log out, `/auth/confirm`, student/tutor/admin dashboards, draft terms and privacy pages
+  - [x] Tests: unit (validation, redirects), integration (security rules against the dev database), end-to-end in Edge (login, role redirects, logout, form errors)
+  - [ ] Deployed, and Caden completes a real sign-up with a confirmation email on the live site
+  - Custom confirmation email template (`supabase/templates/confirmation.html`) waits for a custom SMTP provider; the free plan's built-in email can't use templates
 - [ ] Slice 2: Tutor profiles, teaching style questionnaire, and approval
 - [ ] Slice 3: Learning style assessment, search, and matching
 - [ ] Slice 4: Booking
